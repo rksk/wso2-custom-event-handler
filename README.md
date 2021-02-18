@@ -1,6 +1,6 @@
 This event handler was developed to track the time when user logged in previously. This is useful for client applications to perform certain tasks when a user logs in after a long time.
 
-This is tested with WSO2 IS 5.7.0.
+This is tested with WSO2 IS 5.7.0 and 5.10.0.
 
 **Steps to deploy**
 
@@ -28,10 +28,19 @@ Restart WSO2 IS
 
 **Troubleshooting**
 
-Add following line into `log4j.properties` file and restart WSO2 IS.
-`
-    log4j.logger.org.wso2.custom.handler.previouslogintime=DEBUG
-  
+For 5.8.0 or older versions; add following line into `log4j.properties` file and restart WSO2 IS.
+```
+log4j.logger.org.wso2.custom.handler.previouslogintime=DEBUG
+```
+
+
+For 5.9.0 or newer versions; add following line into `log4j2.properties` file and add the logger `org-wso2-custom-handler.previouslogintime` at the end of the line starting with `loggers =`.
+```
+logger.org-wso2-custom-handler.previouslogintime.name = org.wso2.custom.handler.previouslogintime
+logger.org-wso2-custom-handler.previouslogintime.level = DEBUG
+```
+
+
 
 Following log will be written at server startup.  
 ```
