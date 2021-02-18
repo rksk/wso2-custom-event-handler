@@ -8,12 +8,19 @@ Build the component using `mvn clean install`
 
 Copy the `org.wso2.custom.handler.previouslogintime-1.0.0.jar` file into `<IS_HOME>/repository/components/dropins`
 
-Add following two lines into `<IS_HOME>/repository/conf/identity/identity-event.properties` file
+For 5.8.0 or older versions; add following two lines into `<IS_HOME>/repository/conf/identity/identity-event.properties` file
+```
+module.name.13=previousLoginTimeHandler
+previousLoginTimeHandler.subscription.1=POST_AUTHENTICATION
 
-    module.name.13=previousLoginTimeHandler
-    previousLoginTimeHandler.subscription.1=POST_AUTHENTICATION
-
-    Note: the number 13 has to be changed to `the highest existing number with module.name + 1`
+Note: the number 13 has to be changed to `the highest existing number with module.name + 1`
+```
+For 5.9.0 or newer versions;  add following configuration to `deployment.toml` file.
+```
+[[event_handler]]
+name= "previousLoginTimeHandler"
+subscriptions =["POST_AUTHENTICATION"] 
+```
 
 Create two local claims
 
